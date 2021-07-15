@@ -1,0 +1,3 @@
+{
+  "extends": "@studio-freight/stylelint-config-base-css",
+}

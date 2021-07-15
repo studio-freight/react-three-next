@@ -1,9 +1,9 @@
-import useStore from '@/helpers/store'
-import { A11y } from '@react-three/a11y'
-import { useFrame } from '@react-three/fiber'
-import { useRef, useState } from 'react'
+import useStore from "@/helpers/store"
+import { A11y } from "@react-three/a11y"
+import { useFrame } from "@react-three/fiber"
+import { useRef, useState } from "react"
 
-const BoxComponent = ({ route }) => {
+const BoxComponent = ({ route = "/" }) => {
   const router = useStore((s) => s.router)
   // This reference will give us direct access to the THREE.Mesh object
   const mesh = useRef()
@@ -18,20 +18,18 @@ const BoxComponent = ({ route }) => {
   // Return the view, these are regular Threejs elements expressed in JSX
   return (
     <A11y
-      role='link'
+      role="link"
       href={route}
       actionCall={() => {
         router.push(route)
       }}
+      onPointerEnter={(event) => setHover(true)}
+      onPointerLeave={(event) => setHover(false)}
     >
-      <mesh
-        ref={mesh}
-        onPointerOver={(event) => setHover(true)}
-        onPointerOut={(event) => setHover(false)}
-      >
+      <mesh ref={mesh}>
         <boxGeometry args={[1, 1, 1]} />
         <meshBasicMaterial
-          color={hovered ? 'hotpink' : route === '/' ? 'darkgrey' : 'orange'}
+          color={hovered ? "hotpink" : route === "/" ? "darkgrey" : "orange"}
         />
       </mesh>
     </A11y>

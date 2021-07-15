@@ -1,19 +1,19 @@
-import { useRouter } from 'next/router'
-import useStore from '@/helpers/store'
-import { useEffect, Children, Component } from 'react'
-import Header from '@/config'
-import dynamic from 'next/dynamic'
-import Dom from '@/components/layout/dom'
+import { useRouter } from "next/router"
+import useStore from "@/helpers/store"
+import { useEffect, Children } from "react"
+import Header from "@/config"
+import dynamic from "next/dynamic"
+import Dom from "@/components/layout/dom"
 
-import '@/styles/index.css'
+import "@/styles/index.scss"
 
 let LCanvas = null
-if (process.env.NODE_ENV === 'production') {
-  LCanvas = dynamic(() => import('@/components/layout/canvas'), {
+if (process.env.NODE_ENV === "production") {
+  LCanvas = dynamic(() => import("@/components/layout/canvas"), {
     ssr: false,
   })
 } else {
-  LCanvas = require('@/components/layout/canvas').default
+  LCanvas = require("@/components/layout/canvas").default
 }
 
 function Layout({ dom }) {
